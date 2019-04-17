@@ -8,6 +8,7 @@
 
 namespace app\models;
 use yii\db\ActiveRecord;
+use Yii;
 
 class Good extends ActiveRecord
 {
@@ -18,7 +19,12 @@ class Good extends ActiveRecord
 
     public function getAllGoods()
     {
-        $goods = Good::find()->asArray()->all();
+        $goods = Yii::$app->cache->get('goods');
+        if (!$goods) {
+            $goods = Good::find()->asArray()->all();
+            Yii::$app->cache->set('goods', $goods, 60);
+
+        }
         return $goods;
     }
 

@@ -1,3 +1,5 @@
+<?=\app\widgets\MenuWidget::widget()?>
+
 <div class="container">
     <div class="row">
 
@@ -17,5 +19,6 @@
             </div><!-- /.product -->
         </div><!-- /.col-4 -->
         <? } ?>
+
     </div><!-- /.container -->
 </div><!-- /.row -->
