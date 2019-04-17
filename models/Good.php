@@ -22,8 +22,7 @@ class Good extends ActiveRecord
         $goods = Yii::$app->cache->get('goods');
         if (!$goods) {
             $goods = Good::find()->asArray()->all();
-            Yii::$app->cache->set('goods', $goods, 10);
-
+            Yii::$app->cache->set('goods', $goods, 30);
         }
         return $goods;
     }
@@ -31,7 +30,12 @@ class Good extends ActiveRecord
 // cat_id - название категории
     public function getGoodsCategorized($cat_id)
     {
-        $goods = Good::find()->where(['category' => $cat_id])->asArray()->all();
+        $goods = Yii::$app->cache->get('goodsCategorized');
+        if (!$goods) {
+            $goods = Good::find()->where(['category' => $cat_id])->asArray()->all();
+            Yii::$app->cache->set('goodsCategorized', $goods, 10);
+        }
+//        $goods = Good::find()->where(['category' => $cat_id])->asArray()->all();
         return $goods;
     }
 

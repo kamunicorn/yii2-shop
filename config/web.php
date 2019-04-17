@@ -18,6 +18,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'category/<cat_id>' => 'category/view',
+                'search' => 'category/search',
             ],
         ],
         'request' => [
