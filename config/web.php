@@ -17,6 +17,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'category/<cat_id>' => 'category/view',
             ],
         ],
         'request' => [

@@ -9,6 +9,7 @@
 namespace app\controllers;
 use app\models\Good;
 use yii\web\Controller;
+use Yii;
 
 class CategoryController extends Controller
 {
@@ -17,5 +18,18 @@ class CategoryController extends Controller
         $goods = new Good();
         $goods = $goods->getAllGoods();
         return $this->render('index', compact('goods'));
+    }
+
+    public function actionView($cat_id) {
+        $goods = new Good();
+        $goods = $goods->getGoodsCategorized($cat_id);
+        return $this->render('view', compact('goods'));
+    }
+
+    public function actionSearch() {
+        $search = Yii::$app->request->get('search');
+        $goods = new Good();
+        $goods = $goods->getSearchResults($search);
+        return $this->render('search', compact('goods', 'search'));
     }
 }

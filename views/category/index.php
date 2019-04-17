@@ -1,6 +1,6 @@
 <?=\app\widgets\MenuWidget::widget()?>
 
-<div class="container">
+<div class="container justify-content-center">
     <div class="row">
 
         <? foreach ($goods as $good) { ?>

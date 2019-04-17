@@ -22,10 +22,23 @@ class Good extends ActiveRecord
         $goods = Yii::$app->cache->get('goods');
         if (!$goods) {
             $goods = Good::find()->asArray()->all();
-            Yii::$app->cache->set('goods', $goods, 60);
+            Yii::$app->cache->set('goods', $goods, 10);
 
         }
         return $goods;
+    }
+
+// cat_id - название категории
+    public function getGoodsCategorized($cat_id)
+    {
+        $goods = Good::find()->where(['category' => $cat_id])->asArray()->all();
+        return $goods;
+    }
+
+    public function getSearchResults($search)
+    {
+        $searchResults = Good::find()->where(['like', 'name', $search])->asArray()->all();
+        return $searchResults;
     }
 
 }
