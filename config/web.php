@@ -19,6 +19,7 @@ $config = [
             'rules' => [
                 'category/<cat_id>' => 'category/view',
                 'search' => 'category/search',
+                'good/<name>' => 'good/index',
             ],
         ],
         'request' => [
