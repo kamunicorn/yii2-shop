@@ -7,8 +7,9 @@
         <tr>
             <th scope="col">Фото</th>
             <th scope="col">Наименование</th>
-            <th scope="col">Количество</th>
             <th scope="col">Цена</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Стоимость</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -18,18 +19,19 @@
         <tr>
             <td style="vertical-align: middle" width="150"><img src="/img/<?=$good['img']?>" alt="<?=$good['name']?>"></td>
             <td style="vertical-align: middle"><?=$good['name']?></td>
+            <td style="vertical-align: middle"><?=$good['price']?></td>
             <td style="vertical-align: middle"><?=$good['goodQuantity']?></td>
-            <td style="vertical-align: middle"><?=($good['goodQuantity'] * $good['price'])?> рублей</td>
+            <td style="vertical-align: middle"><?= $good['goodQuantity'] * $good['price']?> рублей</td>
             <td class="delete" style="text-align: center; cursor: pointer; vertical-align: middle; color: red">
                 <span>&#10006;</span></td>
         </tr>
         <? } ?>
         <tr style="border-top: 4px solid black">
-            <td colspan="4">Всего товаров </td>
+            <td colspan="5">Всего товаров </td>
             <td class="total-quantity"><?=$session['cart.totalQuantity']?></td>
         </tr>
         <tr>
-            <td colspan="4">На сумму </td>
+            <td colspan="5">На сумму </td>
             <td style="font-weight: 700"><?=$session['cart.totalSum']?> рублей</td>
         </tr>
     </tbody>
