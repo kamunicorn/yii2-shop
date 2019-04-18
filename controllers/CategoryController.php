@@ -27,7 +27,8 @@ class CategoryController extends Controller
     }
 
     public function actionSearch() {
-        $search = Yii::$app->request->get('search');
+        $search = htmlspecialchars(Yii::$app->request->get('search'));
+//        $search = strip_tags(Yii::$app->request->get('search'));
         $goods = new Good();
         $goods = $goods->getSearchResults($search);
         return $this->render('search', compact('goods', 'search'));

@@ -41,6 +41,7 @@ class Good extends ActiveRecord
 
     public function getSearchResults($search)
     {
+//        $search = strip_tags($search);
         $searchResults = Good::find()->where(['like', 'name', $search])->asArray()->all();
         return $searchResults;
     }

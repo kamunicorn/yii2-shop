@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
 
         <? foreach ($goods as $good) { ?>
-            <div class="col-4">
+            <div class="col-md-6 col-lg-4">
                 <div class="product">
                     <div class="product-img">
                         <img src="/img/<?=$good['img']?>" alt="<?=$good['name']?>">

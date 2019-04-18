@@ -16,17 +16,16 @@ class MenuWidget extends Widget
 
     public function run()
     {
-        $this->data = new Category();
-        $this->data = $this->data->getCategories();
-        $this->data = $this->categorieToTemplate($this->data);
+        $data = new Category();
+        $data = $data->getCategories();
+        $this->data = $this->categorieToTemplate($data);
         return $this->data;
-
     }
 
     public function categorieToTemplate($data)
     {
         ob_start();
-        include __DIR__ ."/template/menu.php";
+        include __DIR__ . "/template/menu.php";
         return ob_get_clean();
     }
 
