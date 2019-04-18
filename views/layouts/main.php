@@ -21,8 +21,13 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($this->title) ?> | Sushi Company</title>
     <?php $this->head() ?>
+    <?php $this->registerLinkTag([
+        'rel' => 'shortcut icon',
+        'type' => 'image/x-icon',
+        'href' =>  'web/favicon.png',
+    ]);?>
 </head>
 <body>
 <?php $this->beginBody() ?>

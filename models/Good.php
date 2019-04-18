@@ -27,11 +27,12 @@ class Good extends ActiveRecord
         return $goods;
     }
 
+// Получение одного товара для карточки товара
     public function getOneGood($name) {
         return Good::find()->where(['link_name' => $name])->asArray()->one();
     }
 
-// cat_id - название категории
+// cat_id - название категории. Получение товаров в определенной категории
     public function getGoodsCategorized($cat_id)
     {
         $goods = Yii::$app->cache->get('goodsCategorized');

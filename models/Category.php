@@ -20,4 +20,9 @@ class Category extends ActiveRecord
     {
         return Category::find()->asArray()->all();
     }
+
+    //    Получение названия категории для отображения в title
+    public function getGoodsCategory($cat_id) {
+        return Category::find()->where(['cat_name' => $cat_id])->asArray()->one();
+    }
 }

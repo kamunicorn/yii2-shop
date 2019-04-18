@@ -1,4 +1,5 @@
 <?use yii\helpers\Url;?>
+<? $this->title = "Результаты поиска"; ?>
 
 <div class="container">
     <h2 style="text-align: center">Результаты поиска по запросу "<?=$search?>"</h2>

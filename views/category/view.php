@@ -1,5 +1,6 @@
 <?=\app\widgets\MenuWidget::widget()?>
 <?use yii\helpers\Url;?>
+<? $this->title = $goodsName['browser_name']; ?>
 
 <div class="container">
     <div class="row justify-content-center">
