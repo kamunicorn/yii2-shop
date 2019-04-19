@@ -22,7 +22,7 @@
             <td style="vertical-align: middle"><?=$good['price']?></td>
             <td style="vertical-align: middle"><?=$good['goodQuantity']?></td>
             <td style="vertical-align: middle"><?= $good['goodQuantity'] * $good['price']?> рублей</td>
-            <td class="delete" style="text-align: center; cursor: pointer; vertical-align: middle; color: red">
+            <td class="delete" data-id="<?=$id?>" style="text-align: center; cursor: pointer; vertical-align: middle; color: red">
                 <span>&#10006;</span></td>
         </tr>
         <? } ?>
@@ -39,7 +39,7 @@
 </table>
 
 <div class="modal-buttons" style="display: flex; padding: 15px; justify-content: space-around">
-    <button type="button" class="btn btn-danger">Очистить корзину</button>
+    <button type="button" class="btn btn-danger" onclick="clearCart(event)">Очистить корзину</button>
     <button type="button" class="btn btn-secondary btn-close">Продолжить покупки</button>
     <button type="button" class="btn btn-success btn-next">Оформить заказ</button>
 </div>

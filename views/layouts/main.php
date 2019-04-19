@@ -38,7 +38,7 @@ AppAsset::register($this);
             <div class="header">
                 <a href="/">На главную</a>
                 <a href="#">Вход в админку</a>
-                <a onclick="openCart(event)" href="#">Корзина</a>
+                <a onclick="openCart(event)" href="#">Корзина <span class="menu-quantity">(<?= $_SESSION['cart.totalQuantity'] ? $_SESSION['cart.totalQuantity'] : '0' ?>)</span></a>
                 <form action="<?=Url::to(['category/search'])?>" method="get">
                     <input type="text" style="padding: 5px" placeholder="Поиск..." name="text">
                 </form>
