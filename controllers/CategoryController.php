@@ -30,10 +30,9 @@ class CategoryController extends Controller
     }
 
     public function actionSearch() {
-        $search = htmlspecialchars(Yii::$app->request->get('search'));
-//        $search = strip_tags(Yii::$app->request->get('search'));
+        $text = htmlspecialchars(Yii::$app->request->get('text'));
         $goods = new Good();
-        $goods = $goods->getSearchResults($search);
-        return $this->render('search', compact('goods', 'search'));
+        $goods = $goods->getSearchResults($text);
+        return $this->render('search', compact('goods', 'text'));
     }
 }
