@@ -1,6 +1,6 @@
 <?=\app\widgets\MenuWidget::widget()?>
 <?use yii\helpers\Url;?>
-<? $this->title = "Sushi Company"; ?>
+<?// $this->title = "Sushi Company"; ?>
 
 <div class="container justify-content-center">
     <div class="row">

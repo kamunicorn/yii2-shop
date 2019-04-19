@@ -1,3 +1,4 @@
+// Открыть корзину (кнопка Корзина в Меню)
 function openCart(event) {
     event.preventDefault;
     $.ajax({
@@ -13,6 +14,7 @@ function openCart(event) {
     });
 }
 
+// Кнопка Очистить корзину
 function clearCart(event) {
     if (confirm('Вы действительно хотите очистить корзину?')) {
         event.preventDefault;
@@ -21,6 +23,7 @@ function clearCart(event) {
             type: 'GET',
             success: function (res) {
                 $('#cart .modal-content').html(res);
+                $('.menu-quantity').html('(0)');
             },
             error: function () {
                 alert('error');
@@ -29,6 +32,7 @@ function clearCart(event) {
     }
 }
 
+// Кнопка Заказать в карточке товара (во всех view)
 $('.product-button__add').on('click', function (event) {
     event.preventDefault();
     let name = $(this).data('name');
@@ -47,6 +51,23 @@ $('.product-button__add').on('click', function (event) {
     });
 });
 
+// Оформление заказа - кнопка
+$('.modal-content').on('click', '.btn-next', function () {
+    $.ajax({
+        url: '/cart/order',
+        type: 'GET',
+        success: function (res) {
+            $('#order .modal-content').html(res);
+            $('#cart').modal('hide');
+            $('#order').modal('show');
+        },
+        error: function () {
+            alert('error');
+        }
+    });
+});
+
+// Удаление товара из корзины - кнопка крестик
 $('.modal-content').on('click', '.delete', function () {
     let id = $(this).data('id');
     // console.log(id);
@@ -67,7 +88,7 @@ $('.modal-content').on('click', '.delete', function () {
         }
     });
 });
-
+// Нажатие на кнопку Начать покупки (или продолжить)
 $('.modal-content').on('click', '.btn-close', function () {
     $('#cart').modal('hide');
 });

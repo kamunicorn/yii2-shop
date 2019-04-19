@@ -21,7 +21,10 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?> | Sushi Company</title>
+    <title><?= ($this->title)
+            ? Html::encode($this->title) . '| Sushi Company'
+            : 'Sushi Company' ?>
+    </title>
     <?php $this->head() ?>
     <?php $this->registerLinkTag([
         'rel' => 'shortcut icon',
@@ -59,9 +62,13 @@ AppAsset::register($this);
 
 <div id="cart" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            Hello, modal!
-        </div>
+        <div class="modal-content"></div>
+    </div>
+</div>
+
+<div id="order" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" style="padding-left: 15px;padding-right: 15px;"></div>
     </div>
 </div>
 
