@@ -22,7 +22,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= ($this->title)
-            ? Html::encode($this->title) . '| Sushi Company'
+            ? Html::encode($this->title) . ' | Sushi Company'
             : 'Sushi Company' ?>
     </title>
     <?php $this->head() ?>
@@ -41,7 +41,10 @@ AppAsset::register($this);
             <div class="header">
                 <a href="/">На главную</a>
                 <a href="#">Вход в админку</a>
-                <a onclick="openCart(event)" href="#">Корзина <span class="menu-quantity">(<?= $_SESSION['cart.totalQuantity'] ? $_SESSION['cart.totalQuantity'] : '0' ?>)</span></a>
+                <a onclick="openCart(event)" href="#">Корзина <span class="menu-quantity">
+                        (<?= (isset($_SESSION['cart.totalQuantity']))
+                            ? $_SESSION['cart.totalQuantity']
+                            : '0' ?>)</span></a>
                 <form action="<?=Url::to(['category/search'])?>" method="get">
                     <input type="text" style="padding: 5px" placeholder="Поиск..." name="text">
                 </form>
