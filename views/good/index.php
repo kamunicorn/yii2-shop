@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row justify-content-md-center">
 
-        <div class="col-8 justify-self-center">
+        <div class="col-md-8 col-12 justify-self-center">
             <h2><div class="product-title"><?=$good['name']?></div></h2>
             <div class="product">
                 <div class="product-img">

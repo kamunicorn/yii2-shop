@@ -45,8 +45,8 @@ AppAsset::register($this);
                         (<?= (isset($_SESSION['cart.totalQuantity']))
                             ? $_SESSION['cart.totalQuantity']
                             : '0' ?>)</span></a>
-                <form action="<?=Url::to(['category/search'])?>" method="get">
-                    <input type="text" style="padding: 5px" placeholder="Поиск..." name="text">
+                <form class="search" action="<?=Url::to(['category/search'])?>" method="get">
+                    <input type="text" placeholder="Поиск..." name="text">
                 </form>
             </div>
         </div>
