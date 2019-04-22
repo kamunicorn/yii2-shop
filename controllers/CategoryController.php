@@ -25,7 +25,7 @@ class CategoryController extends Controller
         $goods = new Good();
         $goods = $goods->getGoodsCategorized($cat_id);
         $goodsName = new Category();
-        $goodsName = $goodsName->getGoodsCategory($cat_id);
+        $goodsName = $goodsName->getCategoryTitle($cat_id);
         return $this->render('view', compact('goods', 'goodsName'));
     }
 

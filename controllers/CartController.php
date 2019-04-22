@@ -40,7 +40,11 @@ class CartController extends Controller
     public function actionOrder() {
         $session = Yii::$app->session;
         $session->open();
-        if (!$session['cart.totalSum']) {
+//        допускается одинарная перезагрузка
+        if (!isset($session['cart.totalSum']) && isset($session['lastOrderId'])) {
+            $session->remove('lastOrderId');
+            return $this->render('success', ['currentId' => $session['lastOrderId']]);
+        } elseif (!$session['cart.totalSum']) {
             return Yii::$app->response->redirect(Url::to('/'));
         }
         $order = new Order();
@@ -51,15 +55,16 @@ class CartController extends Controller
                 $currentId = $order->id;
                 $this->saveOrderInfo($session['cart'], $currentId);
                 Yii::$app->mailer->compose('order-mail', ['session' => $session, 'order' => $order])
-                    ->setFrom(['mail.test2019@mail.ru' => 'Вера'])
+                    ->setFrom(['mail.test2019@mail.ru' => 'Sushi Company'])
                     ->setTo($order->email)
                     ->setSubject('Ваш заказ принят')
                     ->send();
 
+                $session['lastOrderId'] = $currentId;
                 $session->remove('cart');
                 $session->remove('cart.totalQuantity');
                 $session->remove('cart.totalSum');
-                return $this->render('success', compact('session', 'currentId'));
+                return $this->render('success', compact('currentId'));
             }
         }
         $this->layout = 'empty-layout';
@@ -77,7 +82,6 @@ class CartController extends Controller
             $orderInfo->sum = $good['goodQuantity'] * $good['price'];
             $orderInfo->save();
         }
-
     }
 
     public function actionClear() {

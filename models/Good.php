@@ -22,7 +22,7 @@ class Good extends ActiveRecord
         $goods = Yii::$app->cache->get('goods');
         if (!$goods) {
             $goods = Good::find()->asArray()->all();
-            Yii::$app->cache->set('goods', $goods, 30);
+            Yii::$app->cache->set('goods', $goods, 60);
         }
         return $goods;
     }
@@ -35,12 +35,12 @@ class Good extends ActiveRecord
 // cat_id - название категории. Получение товаров в определенной категории
     public function getGoodsCategorized($cat_id)
     {
-        /*$goods = Yii::$app->cache->get('goodsCategorized');
+        $goods = Yii::$app->cache->get('goods_' . $cat_id);
         if (!$goods) {
             $goods = Good::find()->where(['category' => $cat_id])->asArray()->all();
-            Yii::$app->cache->set('goodsCategorized', $goods, 5);
-        }*/
-        return Good::find()->where(['category' => $cat_id])->asArray()->all();;
+            Yii::$app->cache->set('goods_' . $cat_id, $goods, 60);
+        }
+        return $goods;
     }
 
     public function getSearchResults($text)
