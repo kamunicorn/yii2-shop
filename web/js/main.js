@@ -1,3 +1,17 @@
+let split = window.location.href.split('/'),
+    cat = split[split.length - 1],
+    nav = $('.nav-link');
+
+for (let i = 0; i < nav.length; i++) {
+    if ($(nav[i]).data('id') == cat) {
+        $(nav[i]).addClass('active');
+        break;
+    } else if (!cat) {
+        $(nav[0]).addClass('active');
+        break;
+    }
+}
+
 // Открыть корзину (кнопка Корзина в Меню)
 function openCart(event) {
     event.preventDefault;

@@ -29,7 +29,7 @@ AppAsset::register($this);
     <?php $this->registerLinkTag([
         'rel' => 'shortcut icon',
         'type' => 'image/x-icon',
-        'href' =>  'web/favicon.png',
+        'href' =>  '/web/favicon.png',
     ]);?>
 </head>
 <body>
