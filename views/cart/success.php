@@ -1,3 +1,4 @@
 <div class="container">
-    <h1 style="text-align: center;">Спасибо за заказ!</h1>
+    <h1>Ваш заказ под номером <?=$currentId?> принят!</h1>
+    <a href="/" class="btn btn-success">Вернуться на главную</a>
 </div>
