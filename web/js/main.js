@@ -1,3 +1,4 @@
+// Добавление класса active (выделение жирным) текущей категории в меню
 let split = window.location.href.split('/'),
     cat = split[split.length - 1],
     nav = $('.nav-link');
@@ -65,7 +66,7 @@ $('.product-button__add').on('click', function (event) {
     });
 });
 
-// Оформление заказа - кнопка
+// Оформление заказа - кнопка в корзине
 $('.modal-content').on('click', '.btn-next', function () {
     $.ajax({
         url: '/cart/order',

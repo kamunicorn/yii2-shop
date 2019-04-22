@@ -20,9 +20,6 @@ class CartController extends Controller
     public function actionOpen() {
         $session = Yii::$app->session;
         $session->open();
-//        $session->remove('cart');
-//        $session->remove('cart.totalQuantity');
-//        $session->remove('cart.totalSum');
         return $this->renderPartial('cart', compact('session'));
     }
 
@@ -31,7 +28,6 @@ class CartController extends Controller
         $good = $good->getOneGood($name);
         $session = Yii::$app->session;
         $session->open();
-//        $session->remove('cart');
         $cart = new Cart();
         $cart->addToCart($good);
         return $this->renderPartial('cart', compact('good', 'session'));
@@ -40,11 +36,9 @@ class CartController extends Controller
     public function actionOrder() {
         $session = Yii::$app->session;
         $session->open();
-//        допускается одинарная перезагрузка
         if (!isset($session['cart.totalSum']) && isset($session['lastOrderId'])) {
-            $session->remove('lastOrderId');
-            return $this->render('success', ['currentId' => $session['lastOrderId']]);
-        } elseif (!$session['cart.totalSum']) {
+            return Yii::$app->response->redirect(Url::to('success'));
+        } elseif (!isset($session['cart.totalSum'])) {
             return Yii::$app->response->redirect(Url::to('/'));
         }
         $order = new Order();
@@ -64,11 +58,21 @@ class CartController extends Controller
                 $session->remove('cart');
                 $session->remove('cart.totalQuantity');
                 $session->remove('cart.totalSum');
-                return $this->render('success', compact('currentId'));
+                return Yii::$app->response->redirect(Url::to('success'));
             }
         }
         $this->layout = 'empty-layout';
         return $this->render('order', compact('order', 'session'));
+    }
+
+    public function actionSuccess() {
+        $session = Yii::$app->session;
+        $session->open();
+
+        if (!isset($session['cart.totalSum']) && isset($session['lastOrderId'])) {
+            return $this->render('success', ['currentId' => $session['lastOrderId']]);
+        }
+        return Yii::$app->response->redirect(Url::to('/'));
     }
 
     protected function saveOrderInfo($goods, $orderId) {
