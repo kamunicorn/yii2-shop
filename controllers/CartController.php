@@ -49,6 +49,7 @@ class CartController extends Controller
             $order->sum = $session['cart.totalSum'];
             if ($order->save()) {
                 $currentId = $order->id;
+                $this->saveOrderInfo($session['cart'], $currentId);
                 Yii::$app->mailer->compose('order-mail', ['session' => $session, 'order' => $order])
                     ->setFrom(['mail.test2019@mail.ru' => 'Вера'])
                     ->setTo($order->email)
@@ -63,6 +64,20 @@ class CartController extends Controller
         }
         $this->layout = 'empty-layout';
         return $this->render('order', compact('order', 'session'));
+    }
+
+    protected function saveOrderInfo($goods, $orderId) {
+        foreach ($goods as $id => $good) {
+            $orderInfo = new OrderGood();
+            $orderInfo->order_id = $orderId;
+            $orderInfo->product_id = $id;
+            $orderInfo->name = $good['name'];
+            $orderInfo->price = $good['price'];
+            $orderInfo->quantity = $good['goodQuantity'];
+            $orderInfo->sum = $good['goodQuantity'] * $good['price'];
+            $orderInfo->save();
+        }
+
     }
 
     public function actionClear() {
