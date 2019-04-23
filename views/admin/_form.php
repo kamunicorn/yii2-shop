@@ -20,6 +20,7 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+        <a href="/admin" class="btn btn-primary">Отмена</a>
     </div>
 
     <?php ActiveForm::end(); ?>

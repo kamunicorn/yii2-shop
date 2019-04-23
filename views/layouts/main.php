@@ -40,7 +40,14 @@ AppAsset::register($this);
         <div class="container">
             <div class="header">
                 <a href="/">На главную</a>
-                <a href="#">Вход в админку</a>
+                <? if (!Yii::$app->user->isGuest) { ?>
+                    <a href="/admin/">Админка</a>
+                <? } ?>
+                <? if (Yii::$app->user->isGuest) { ?>
+                    <a href="/admin/login">Вход в админку</a>
+                <? } else { ?>
+                    <a href="/admin/logout">Выход из админки</a>
+                <? } ?>
                 <a onclick="openCart(event)" href="#">Корзина <span class="menu-quantity">
                         (<?= (isset($_SESSION['cart.totalQuantity']))
                             ? $_SESSION['cart.totalQuantity']
@@ -52,7 +59,9 @@ AppAsset::register($this);
         </div>
     </header>
 
-    <?= $content ?>
+    <div class="container">
+        <?= $content ?>
+    </div>
 
     <footer>
         <div class="container">
@@ -63,12 +72,14 @@ AppAsset::register($this);
     </footer>
 </section>
 
+<!-- Модалка для корзины -->
 <div id="cart" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content"></div>
     </div>
 </div>
 
+<!-- Модалка оформления заказа -->
 <div id="order" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content" style="padding-left: 15px;padding-right: 15px;"></div>

@@ -12,6 +12,9 @@ use yii\db\ActiveRecord;
 class Cart extends ActiveRecord
 {
     public function addToCart($good) {
+        if (isset($_SESSION['lastOrderId'])) {
+            unset($_SESSION['lastOrderId']);
+        }
         if (isset($_SESSION['cart'][$good['id']])) {
             $_SESSION['cart'][$good['id']]['goodQuantity'] += 1;
         } else {

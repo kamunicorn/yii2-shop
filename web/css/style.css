@@ -14,12 +14,14 @@ img {
 .help-block {
     color: red !important;
 }
-
+html {
+    font-size: 16px;
+}
 body {
     background-color: #dde;
     margin-top: 0;
     margin-bottom: 0;
-    font-family: Arial;
+    font-family: 'Arial', sans-serif;
 }
 
 .body {
@@ -64,7 +66,9 @@ body {
 }
 
 .product-buttons {
-    margin-top: 15px;
+    min-width: 200px;
+    max-width: 300px;
+    margin: 15px auto 0;
     display: flex;
     justify-content: space-around;
 }
@@ -125,8 +129,16 @@ form.search input[name=text] {
         font-size: 20px;
     }
 }
+
+/* Перебиваем стили bootstrap для адаптивности модальных окнон */
+.modal-open .modal, .modal {
+    overflow: auto;
+}
+#cart .modal-dialog {
+    min-width: 750px;
+}
+
 @media (max-width: 479px) {
-    /* form.search {width: 100%;} */
     form.search input[name=text] {
         padding: 2px 5px;
     }

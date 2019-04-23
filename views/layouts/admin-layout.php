@@ -40,7 +40,9 @@ AdminAppAsset::register($this);
         <div class="container">
             <div class="header">
                 <a href="/">На главную</a>
-                <a href="#">Вход в админку</a>
+                <? if (!Yii::$app->user->isGuest) { ?>
+                    <a href="/admin/logout">Выход из админки</a>
+                <? } ?>
                 <form class="search" action="<?=Url::to(['category/search'])?>" method="get">
                     <input type="text" placeholder="Поиск..." name="text">
                 </form>
@@ -49,7 +51,7 @@ AdminAppAsset::register($this);
     </header>
 
     <div class="container">
-    <?= $content ?>
+        <?= $content ?>
     </div>
 
     <footer>

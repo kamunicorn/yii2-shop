@@ -7,11 +7,12 @@
  */
 
 namespace app\controllers;
+
+use Yii;
 use app\models\Good;
 use app\models\Cart;
 use app\models\Order;
 use app\models\OrderGood;
-use Yii;
 use yii\web\Controller;
 use yii\helpers\Url;
 
